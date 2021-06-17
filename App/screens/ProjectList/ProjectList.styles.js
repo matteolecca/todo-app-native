@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native'
-import colors from '../../constants/colors'
+import {getColorTheme} from '../../constants/colors'
+const colors = getColorTheme()
 const screen = Dimensions.get('window')
 export default StyleSheet.create({
     titleContainer : {
@@ -9,8 +10,23 @@ export default StyleSheet.create({
         marginBottom : 20
     },
     title : {
+        color : colors.mainColor,
         fontSize : 30,
         textTransform : 'capitalize',
     },
+    emptyContainer : {
+        alignSelf : 'center',
+        alignItems : 'center',
+        justifyContent : 'center',
+        flex : 1
+
+    },
+    emptyImage : {
+        width : screen.width * .8,
+        height : screen.width * .5,
+    },
+    projectTitle : {
+        color : colors.mainColor
+    }
     
 })

@@ -17,16 +17,18 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.matteolecca.todoappnative"
     },
-    "androidStatusBar":{
-      "translucent" : false
+    "androidStatusBar": {
+      "translucent": false
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.matteolecca.todoappnative"
     },
     "web": {
       "favicon": "./assets/favicon.png"

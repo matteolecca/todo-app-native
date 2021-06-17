@@ -1,20 +1,22 @@
 import { Dimensions, StyleSheet } from 'react-native'
-import colors from '../../constants/colors'
+import {getColorTheme} from '../../constants/colors'
+const colors = getColorTheme()
 const screen = Dimensions.get('window')
 export default StyleSheet.create({
     container:{
-        width : screen.width * 0.8,
+        width : '100%',
         justifyContent : 'space-between',
         alignItems : 'center',
         flexDirection : 'row',
         borderRadius : 10,
-        borderColor : 'rgba(200,200,200,0.5)',
+        borderColor : colors.mainColor,
         borderWidth : StyleSheet.hairlineWidth,
-        backgroundColor : '#ededed',
-        margin :10,
+        backgroundColor : colors.secondaryBackground,
+        marginBottom : 10,
+        marginTop : 10,
     },
     label : {
-        color : '#333'
+        color : colors.mainColor
     },
     input : {
         padding : 10,
@@ -22,7 +24,7 @@ export default StyleSheet.create({
         height : 50,
         borderTopRightRadius : 10,
         borderBottomRightRadius : 10,
-        color : '#333'
+        color : colors.mainColor
     },
     iconContainer : {
         alignItems : 'center',
@@ -32,8 +34,8 @@ export default StyleSheet.create({
         borderBottomLeftRadius : 10,
         borderRightWidth : 0,
         padding : 10,
-        borderRightColor : '#333',
-        backgroundColor : '#ededed',
+        borderRightColor : colors.mainColor,
+        backgroundColor : colors.secondaryBackground,
     },
     disabled : {
         backgroundColor : '#ccc'

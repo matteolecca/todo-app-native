@@ -20,6 +20,7 @@ const validatiotnPatterns = {
 
 
 export const validateInput = (input, type) =>{
+    if (!Object.keys(validatiotnPatterns).includes(type))return true
     const regex = validatiotnPatterns[type].regex.test(input)
     return  regex
 }

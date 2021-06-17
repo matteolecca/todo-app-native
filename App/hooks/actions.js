@@ -5,4 +5,5 @@ export const ERROR_LOGGING_IN = 'ERROR_LOGGING_IN'
 export const LOGOUT = 'LOGOUT'
 export const SIGNUP = 'SIGNUP'
 export const CHECKING_AUTH = 'CHECKING_AUTH'
+export const LOGGING_IN = 'LOGGING_IN'
 

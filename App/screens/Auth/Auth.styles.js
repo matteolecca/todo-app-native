@@ -1,12 +1,17 @@
 import { Dimensions, StyleSheet } from 'react-native'
-import colors from '../../constants/colors'
+import {getColorTheme} from '../../constants/colors'
+const colors = getColorTheme()
 const screen = Dimensions.get('window')
 export default StyleSheet.create({
-    home : {
+    container : {
         alignItems : 'center', 
         justifyContent : 'center',
-        backgroundColor : '#fff',
+        backgroundColor : colors.mainBackground,
         flex : 1,
+    },
+    form : {
+        alignItems : 'center',
+        width : '90%'
     },
     image : {
         width : screen.width * 0.4,
@@ -21,6 +26,12 @@ export default StyleSheet.create({
     },
     icon : {
         color : colors.mainBackground
+    },
+    loadingPage : {
+        backgroundColor : colors.mainBackground,
+        height : screen.height,
+        alignItems : 'center', 
+        justifyContent : 'center'
     }
     
 })

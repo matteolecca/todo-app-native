@@ -7,23 +7,39 @@ import KeyboardListener from '../../components/KeyboardListener/KeyboardListener
 import loginReducer from '../../hooks/auth-hook'
 import { AuthContext } from '../../hooks/auth-hook'
 import { useContext } from 'react';
+import { ActivityIndicator } from 'react-native';
+import mainStyles from '../../App.styles'
 const Home = ({ navigation }) => {
-    const { loading, logged, login, inputs, setValue, message, error } = loginReducer()
+    const { logging, checked, logged, login, inputs, setValue, message, user, checkAuth } = loginReducer()
     const authContext = useContext(AuthContext)
+
+    useEffect(() => {
+        checkAuth()
+    }, [checkAuth])
+
     useEffect(() => {
         if (logged) {
             authContext.setAuth(true)
+            if (user) authContext.setUserData(user)
         }
-    }, [logged])
-    
+    }, [logged, user])
+
     return (
         <KeyboardListener>
-            <View style={styles.home}>
-                <Image resizeMode="contain" style={styles.image} source={require('../../assets/images/app-logo-web.png')} />
-                {inputs ? Object.keys(inputs).map(i => <Input key={i} onChangeText={(e) => setValue(e, i)} {...inputs[i]} />) : null}
-                <Text style={{ color: !error ? '#333' : 'red' }}>{message}</Text>
-                <Button disabled={!inputs.email.valid || !inputs.password.valid} onPress={login} loading={loading}>Login</Button>
-            </View>
+            {checked ?
+                <View style={styles.container}>
+                    <View style={styles.form}>
+                        <Image resizeMode="contain" style={styles.image} source={require('../../assets/images/app-logo-web.png')} />
+                        {inputs ? Object.keys(inputs).map(i => <Input key={i} onChangeText={(e) => setValue(e, i)} {...inputs[i]} />) : null}
+                        <Text style={{ color: 'red' }}>{message}</Text>
+                        <Button disabled={!inputs.email.valid || !inputs.password.valid} onPress={login} loading={logging}>Login</Button>
+                    </View>
+                </View>
+                :
+                <View style={styles.loadingPage}>
+                    <ActivityIndicator />
+                </View>
+            }
         </KeyboardListener>
     );
 };

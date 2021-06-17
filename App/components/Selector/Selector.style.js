@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native'
-import colors from '../../constants/colors'
+import {getColorTheme} from '../../constants/colors'
+const colors = getColorTheme()
 const screen = Dimensions.get('window')
 export default StyleSheet.create({
     selector : {
@@ -15,6 +16,9 @@ export default StyleSheet.create({
         width :screen.width * .04,
         height : screen.width * .04,
         borderRadius : screen.width * .02,
+    },
+    backgroundColor : {
+        color : colors.mainBackground
     }
     
 })

@@ -1,11 +1,16 @@
 import React from 'react'
 import { useState } from 'react';
-import { View, Text, DatePickerIOSComponent } from 'react-native';
+import { View, Text, } from 'react-native';
+import { useEffect } from 'react/cjs/react.development';
 import { colorPickerColors } from '../../constants/colors'
 import Selector from '../Selector/Selector';
 import styles from './ColorBar.styles'
-const ColorBar = () => {
+const ColorBar = ({setColor}) => {
     const [ colorChecked, checkColor ] = useState(colorPickerColors[0].color)
+
+    useEffect(()=>{
+        setColor( colorChecked, 'color')
+    },[colorChecked])
     return (
         <View style={styles.colorBar}>
             <Text>Pick a color</Text>
@@ -15,3 +20,6 @@ const ColorBar = () => {
 };
 
 export default ColorBar;
+
+
+//git clean --force && git reset --hard

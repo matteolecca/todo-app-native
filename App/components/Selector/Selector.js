@@ -10,7 +10,7 @@ const Selector = props => {
         style={[styles.selector, { 
             borderColor : color,
         }]}>
-            <View style={[styles.innerSelector, { backgroundColor : checked ?  color : '#fff'}]}>
+            <View style={[styles.innerSelector, { backgroundColor : checked ?  color : styles.backgroundColor.color}]}>
             </View>
         </TouchableOpacity>
     );

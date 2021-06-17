@@ -17,3 +17,12 @@ export const getLocalData = async key => {
       return { error : e}
     }
   }
+
+  export const removeLocalData = async key => {
+    try {
+      const value = await AsyncStorage.removeItem(key)
+      return value
+    } catch(e) {
+      return { error : e}
+    }
+  }

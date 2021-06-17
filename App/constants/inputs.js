@@ -1,6 +1,7 @@
 import React from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { colorPickerColors } from './colors'
 export const  loginInputs = {
     email :  {
          ID: 0,
@@ -34,13 +35,10 @@ export const  addProjectInputs = {
          secureTextEntry: false,
          icon: <MaterialCommunityIcons  name="email-outline" size={24} />
      },
-     password : {
-         ID: 1,
-         value: '',
-         valid : false,
-         placeholder: 'Password',
-         type: 'password',
-         secureTextEntry: true,
-         icon: <Ionicons  name="ios-key-outline" size={24} color="black" />
+     color : {
+         value : '#fff',
      },
+     date  :{
+         value  : null,
+     }
 }

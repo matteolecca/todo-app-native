@@ -1,1 +1,1 @@
-export const bottombarIcons = ['home', 'user','', 'settings']
+export const bottombarIcons = ['home', 'user', 'settings']

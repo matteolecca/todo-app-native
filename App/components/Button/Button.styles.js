@@ -1,17 +1,16 @@
 import  { Dimensions, StyleSheet } from 'react-native'
-import colors from '../../constants/colors'
+import {getColorTheme} from '../../constants/colors'
+const colors = getColorTheme()
 const screen = Dimensions.get('window')
 export default StyleSheet.create({
     button : {
-        backgroundColor : colors.mainBackground,
+        backgroundColor : colors.appColor,
         alignItems : 'center',
         justifyContent : 'center',
         height : 50,
         width : screen.width * 0.8,
         borderRadius : 10,
         margin : 20,
-        borderWidth : StyleSheet.hairlineWidth,
-        borderColor : '#fff'
     },
     text : {
         color : '#fff'
@@ -20,7 +19,7 @@ export default StyleSheet.create({
         backgroundColor : '#ccc'
     },
     floatingButton : {
-        backgroundColor : '#333',
+        backgroundColor :colors.secondaryBackground,
         width : screen.width * .15,
         height : screen.width * .15,
         bottom : 25,
@@ -28,7 +27,6 @@ export default StyleSheet.create({
         borderRadius : screen.width * .125,
         alignItems : 'center',
         justifyContent : 'center',
-
     }
 
 })

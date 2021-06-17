@@ -1,9 +1,9 @@
 import { StyleSheet, Dimensions } from 'react-native'
-import colors from './constants/colors'
+import { getColorTheme } from './constants/colors'
 import {screenpad} from './constants/mainSizes'
 import { topbarHeight } from './constants/mainSizes'
 const screen = Dimensions.get('window')
-
+const colors = getColorTheme()
 export default StyleSheet.create({
     drawerStyle: {
         width: screen.width,
@@ -12,26 +12,25 @@ export default StyleSheet.create({
         borderBottomRightRadius: 20,
     },
     headerStyle: {
-        backgroundColor: colors.headerBackground,
         shadowOffset: { height: 0, width: 0 },
     },
     container: {
+        backgroundColor : colors.mainBackground,
+        color : colors.mainColor,
         flex: 1,
-        backgroundColor: colors.headerBackground,
-        paddingTop : screen.height * .05
+        paddingTop : screen.height * .02
     },
     screen: {
-        backgroundColor: '#fff',
+        backgroundColor : colors.mainBackground,
+        color : colors.mainColor,
         flex: 1,
-        borderTopRightRadius: 50,
-        borderTopLeftRadius: 50,
         paddingLeft: screenpad,
         paddingRight: screenpad,
-        paddingTop: screenpad,
+        paddingTop: 0,
     },
     shadowbox: {
-        backgroundColor : '#fff',
-        shadowColor: "#000",
+        backgroundColor : colors.secondaryBackground,
+        color : colors.mainColor,
         shadowOffset: {
             width: 0,
             height: 1,
@@ -43,9 +42,17 @@ export default StyleSheet.create({
         padding : 10
     },
     title:{
+        color : colors.mainColor,
         fontWeight : 'bold',
-        fontSize : screen.width * .1,
-        color : '#333',
+        fontSize : screen.width * .07,
+        marginBottom : screen.height * 0.03,
+        textTransform : 'capitalize'
+    },
+    subtitle:{
+        color : colors.mainColor,
+        fontWeight : 'bold',
+        fontSize : screen.width * .05,
+        color : 'rgb(150, 150, 150)',
         marginBottom : screen.height * 0.03,
         textTransform : 'capitalize'
     }
