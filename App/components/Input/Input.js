@@ -1,16 +1,21 @@
 import React from 'react';
-import { Text, TextInput, View } from 'react-native';
+import {  TextInput, View } from 'react-native';
+import { useContext } from 'react/cjs/react.development';
+import { AuthContext } from '../../hooks/auth-hook';
+import { ModeView } from '../../MainComponents/MainComponents';
 import styles from './Input.styles'
 const Input = props => {
+    const context = useContext(AuthContext)
+    const { colorScheme } = context
     const  { icon,   } = props
     const invalid = !props.valid ? styles.invalid : null
     return (
-       <View style={[styles.container, invalid]}>
-           <View style={styles.iconContainer}>
+       <ModeView style={[styles.container, invalid]}>
+           <ModeView style={styles.iconContainer}>
            {icon}
-           </View>
-           <TextInput  {...props} style={styles.input}></TextInput>
-       </View>
+           </ModeView>
+           <TextInput  {...props} style={[styles.input, { color : colorScheme.mainColor}]}></TextInput>
+       </ModeView>
     );
 };
 

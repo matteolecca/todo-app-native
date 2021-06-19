@@ -9,16 +9,25 @@ const Index = () => {
   const [barHidden, hideBar] = useState(false)
   const [userData, setUserData] = useState(false)
   const [colorSchemeSelected, setcolorScheme] = useState(false)
+  const [modalOpened, openModal] = useState(false)
   const setAuthStatus = bool => setAuth(bool)
   const setBarHiddenStatus = bool => hideBar(bool)
   const userDataHandler = useCallback(user => setUserData(user), [])
+  const openModalHandler = bool => openModal(bool)
+  const colorSchemeHandler = value => setcolorScheme(value)
 
   useEffect(()=>{
-    Appearance.addChangeListener(({ colorScheme }) => {
-      setcolorScheme(colorScheme === 'dark' ? lightColors : darkColors)
-      console.log(colorScheme)
-    });
+    const appearenceMode = Appearance.getColorScheme()
+    setcolorScheme(appearenceMode === 'dark' ? darkColors : lightColors)
   },[])
+  
+  useEffect(()=>{
+    Appearance.addChangeListener(({ colorScheme }) => {
+      setcolorScheme(colorScheme === 'dark' ? darkColors : lightColors)
+    });
+    return ()=> Appearance.removeChangeListener()
+  },[])
+  
   return (
       <AuthContext.Provider
         value={{
@@ -28,7 +37,10 @@ const Index = () => {
           hideBar: setBarHiddenStatus,
           user: userData,
           setUserData: userDataHandler,
-          colorScheme : colorSchemeSelected
+          colorScheme : colorSchemeSelected,
+          setcolorScheme : colorSchemeHandler,
+          modalOpened : modalOpened, 
+          openModal : openModalHandler
         }}>
         <App />
       </AuthContext.Provider>

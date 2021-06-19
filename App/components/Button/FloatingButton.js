@@ -7,7 +7,6 @@ import { Icon } from 'react-native-elements';
 
 const Button = props => {
     const {  onPress, loading, disabled } = props
-    const style = disabled ? styles.disabled : null
 
     const pressHandler = () =>{
         onPress()
@@ -15,7 +14,7 @@ const Button = props => {
     }
 
     return (
-        <TouchableOpacity disabled={disabled} onPress={pressHandler} style={[mainStyles.shadowbox,styles.floatingButton, style ]}>
+        <TouchableOpacity disabled={disabled} onPress={pressHandler} style={[mainStyles.shadowbox,styles.floatingButton]}>
             {loading ? <ActivityIndicator color='#fff'></ActivityIndicator> : <Icon color='#fff' adjustsFontSizeToFit type='material-icons' name='add'/>}
         </TouchableOpacity>
     );

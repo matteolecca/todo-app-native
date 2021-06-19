@@ -1,6 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
 import {getColorTheme} from '../../constants/colors'
-const colors = getColorTheme()
 const screen = Dimensions.get('window')
 export default StyleSheet.create({
     project : {
@@ -8,7 +7,11 @@ export default StyleSheet.create({
         alignItems : 'center',
         justifyContent : 'flex-start',
         height : screen.height * 0.07,
-        marginBottom : 10
+        marginBottom : 10,
+        marginLeft : 5,
+        marginRight : 5,
+        padding : 10,
+        borderRadius : 10
     },
     image : {
         marginTop : 20,
@@ -16,17 +19,12 @@ export default StyleSheet.create({
         height : screen.height * .08,
     },
     projectText :{ 
-        color : colors.mainColor,
         fontSize: 20, 
         textTransform: 'capitalize', 
         marginLeft: 10 
     },
     header : {
-        backgroundColor : colors.mainBackground,
        shadowColor : 'transparent',
     },
-    headerTintColor : {
-        color : colors.mainColor
-    }
-    
+  
 })

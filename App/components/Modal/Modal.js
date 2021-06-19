@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import { Dimensions, Modal, View, StyleSheet, Pressable, Keyboard } from 'react-native'
+import { Text, Modal, View, StyleSheet, Pressable, Keyboard } from 'react-native'
+import { ModeButton } from '../../MainComponents/MainComponents';
 import styles from './Modal.styles'
 const ModalContainer = props => {
-  const { opened, open, children } = props
-  const dismissHandler = () =>{
+  const { opened, open, centered, children } = props
+  const style = centered ? styles.centered : styles.absolute
+
+  const dismissHandler = () => {
     open(false)
     Keyboard.dismiss()
   }
   return (
     <Modal
-      animationType="slide"
+      animationType={centered ? "fade" : 'slide'}
       transparent={true}
       visible={opened}
       presentationStyle='overFullScreen'
-     >
-        {/* <Pressable onPress={dismissHandler} style={styles.centeredView} > */}
-     
-          <View style={styles.modalView}>
-            {children}
-          </View>
-      {/* </Pressable> */}
+    >
+      <View onPress={open} style={[styles.modalView, style]}>
+        {children}
+      </View>
     </Modal>
   );
 };

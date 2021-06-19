@@ -1,12 +1,10 @@
 import { Dimensions, StyleSheet } from 'react-native'
 import {getColorTheme} from '../../constants/colors'
-const colors = getColorTheme()
 const screen = Dimensions.get('window')
 export default StyleSheet.create({
     container : {
         alignItems : 'center', 
         justifyContent : 'center',
-        backgroundColor : colors.mainBackground,
         flex : 1,
     },
     form : {
@@ -25,13 +23,16 @@ export default StyleSheet.create({
         marginTop : 0
     },
     icon : {
-        color : colors.mainBackground
     },
     loadingPage : {
-        backgroundColor : colors.mainBackground,
         height : screen.height,
         alignItems : 'center', 
         justifyContent : 'center'
+    },
+    buttonContainer : {
+        flexDirection : 'row',
+        justifyContent : 'space-between',
+        width : '100%'
     }
     
 })

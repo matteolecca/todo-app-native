@@ -3,7 +3,7 @@ import axios from 'axios'
 export const cancelToken = axios.CancelToken
 
 export const instance = axios.create({
-    baseURL: 'http://192.168.1.146:8080/',
+    baseURL: 'http://192.168.1.101:8080/',
     withCredentials : true,
     sameSite : 'none',
 })

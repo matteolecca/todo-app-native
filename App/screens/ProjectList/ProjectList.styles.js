@@ -1,32 +1,35 @@
 import { Dimensions, StyleSheet } from 'react-native'
-import {getColorTheme} from '../../constants/colors'
-const colors = getColorTheme()
 const screen = Dimensions.get('window')
 export default StyleSheet.create({
     titleContainer : {
         flexDirection : 'row',
         alignItems : 'center',
-        justifyContent : 'flex-start',
-        marginBottom : 20
+        justifyContent : 'space-between',
+        backgroundColor : 'transparent',
+        marginBottom : 20,
+        marginTop : 20,
+    },
+    titleItem : {
+        flexDirection : 'row',
+        alignItems : 'center',
+        marginVertical : 10
     },
     title : {
-        color : colors.mainColor,
         fontSize : 30,
         textTransform : 'capitalize',
     },
     emptyContainer : {
-        alignSelf : 'center',
         alignItems : 'center',
         justifyContent : 'center',
-        flex : 1
+        height : screen.height * .5,
 
     },
     emptyImage : {
         width : screen.width * .8,
-        height : screen.width * .5,
+        height : screen.height *.4,
+        alignSelf : 'center',
+        alignItems : 'center',
+        justifyContent : 'center'
     },
-    projectTitle : {
-        color : colors.mainColor
-    }
-    
+   
 })

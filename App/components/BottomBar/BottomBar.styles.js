@@ -1,7 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native'
-import {getColorTheme} from '../../constants/colors'
-const colors = getColorTheme()
 const screen = Dimensions.get('window')
+import { globalColors } from '../../constants/colors'
 export default StyleSheet.create({
     bar : {
         position : 'absolute',
@@ -14,19 +13,14 @@ export default StyleSheet.create({
     container : {
         width : screen.width * .9,
         height : screen.height * .1,
-        backgroundColor : colors.secondaryBackground,
-        color : colors.mainColor,
         borderRadius : 20,
         shadowOpacity : .2,
         justifyContent : 'space-around',
         flexDirection : 'row',
         alignItems : 'center'
     },
-    item : {
-        color : colors.mainColor
-    },
     selectedItem : {
-        color : colors.appColor
+        color : globalColors.appColor
     }
     
 })

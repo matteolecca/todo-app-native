@@ -1,6 +1,6 @@
 import FloatingButton from '../../components/Button/FloatingButton'
 import React from 'react';
-import { View, Text, _ScrollView, ScrollView, ActivityIndicator, Image } from 'react-native';
+import { View, Text, _ScrollView, ScrollView, Image, RefreshControl } from 'react-native';
 import mainStyles from '../../App.styles'
 import Selector from '../../components/Selector/Selector'
 import { Icon } from 'react-native-elements/dist/icons/Icon';
@@ -8,17 +8,24 @@ import styles from './ProjectList.styles'
 import todosHook from '../../hooks/todos-hook'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import AddProject from '../AddProject/AddProject';
 import { AuthContext } from '../../hooks/auth-hook'
 import { useContext } from 'react';
+import { ModeButton, ModeText, ModeView } from '../../MainComponents/MainComponents';
+import AddTodo from '../AddTodo/AddTodo'
+import { globalColors } from '../../constants/colors';
+
 const ProjectList = (props) => {
     const context = useContext(AuthContext)
-    const { navigation, route } = props
+    const { route } = props
     const { ID, title, icon, defaultProject } = route.params
-
     const { ...data } = todosHook()
-    const { todos, loading, gettodos, inserted, deleteTodo } = data
+    const { datas, loading, getDatas, deleteData } = data
     const [modalOpened, openModal] = useState(false)
+
+    const modalHandler = () => {
+        context.openModal(!modalOpened)
+        openModal(!modalOpened)
+    }
 
     useEffect(() => {
         context.hideBar(true)
@@ -26,44 +33,52 @@ const ProjectList = (props) => {
     }, [context.hideBar])
 
     useEffect(() => {
-        gettodos(ID, defaultProject ? title : null)
+        getDatas(ID, defaultProject ? title : null)
     }, [title, ID])
 
     return (
-        <>
-            <View style={[mainStyles.container]}>
-                <View style={mainStyles.screen}>
-                    <View style={styles.titleContainer}>
-                        <Icon onPress={() => navigation.goBack()} style={{ marginRight: 10 }} {...icon} />
-                        <Text style={[styles.title, { color: icon.color }]}>{title}</Text>
-                    </View>
-                    <View style={{ flex: 1, justifyContent: 'center' }}>
-                        {
-                            loading ? <ActivityIndicator style={{ alignSelf: 'center' }} /> : todos ? todos.length === 0 ? <EmptyContainer /> : <Todos projectID={ID} deleteTodo={deleteTodo} todos={todos} /> : null
-                        }
-                    </View>
-                    <FloatingButton onPress={() => openModal(true)} />
-                    <AddProject  {...route} {...data} opened={modalOpened} open={openModal} />
-                </View>
+        <ModeView style={[mainStyles.screen]}>
+            <View style={styles.titleItem}>
+                    <Icon style={{ marginRight: 10 }} {...icon} />
+                    <Text style={[styles.title, { color: icon.color }]}>{title}</Text>
             </View>
-            {modalOpened ? <View style={{ position: 'absolute', height: 1000, backgroundColor: 'rgba(0,0,0,0.5)', top: 0, left: 0, right: 0, bottom: 0 }}></View> : null}
-        </>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+                {
+                    <Todos refresh={() => getDatas(ID, defaultProject ? title : null)} refreshing={loading} projectID={ID} deleteTodo={deleteData} todos={datas} />
+                }
+            </View>
+            <FloatingButton onPress={modalHandler} />
+            <AddTodo  {...route} {...data} opened={modalOpened} open={modalHandler} />
+        </ModeView>
     );
 };
 
-const Todos = ({ todos, deleteTodo, projectID }) => {
+const Todos = ({ todos, deleteTodo, projectID, refresh, refreshing }) => {
+
     return (
-        <ScrollView indicatorStyle='white' style={{ flex: 1 }}>
+        <ScrollView
+            alwaysBounceVertical={true}
+            indicatorStyle='default'
+            contentContainerStyle={styles.scrollView}
+            refreshControl={
+                <RefreshControl
+                    onRefresh={refresh}
+                    refreshing={refreshing}
+                />
+            }
+        >
             {
-                todos.map(p => <Project projectID={projectID} deleteTodo={deleteTodo} key={p.ID} {...p} />)
+                todos ? todos.length === 0 ? <EmptyContainer /> : todos.map(p => <Project projectID={projectID} deleteTodo={deleteTodo} key={p.ID} {...p} />) : null
             }
         </ScrollView>
     )
 }
 const EmptyContainer = () => {
+    const context = useContext(AuthContext)
+    const { colorScheme } = context
     return (
         <View style={styles.emptyContainer}>
-            <Image style={styles.emptyImage} resizeMode="contain" source={require('../../assets/images/empty-img.png')} />
+            <Image style={styles.emptyImage} resizeMode="contain" source={colorScheme.scheme === 'dark' ? require('../../assets/images/empty-img-dark.png') : require('../../assets/images/empty-img.png')} />
             <Text style={{ color: '#ccc' }}>There is nothing here... Start adding a todo</Text>
         </View>
 
@@ -72,6 +87,8 @@ const EmptyContainer = () => {
 const Project = props => {
     const { ID, color, date, important, title, deleteTodo, projectID } = props
     const [checked, check] = useState(false)
+    const context = useContext(AuthContext)
+    const { colorScheme } = context
     const pressHandler = () => {
         check(true)
         deleteTodo(projectID, ID)
@@ -92,7 +109,7 @@ const Project = props => {
                 alignItems: 'center',
             }}>
                 <Selector checked={checked} onPress={pressHandler} color={color} />
-                <Text style={styles.projectTitle}>{title}</Text>
+                <Text style={[styles.projectTitle, { color: colorScheme.mainColor }]}>{title}</Text>
             </View>
             {date ? <Icon color='#f05633' type='feather' name='calendar' /> : null}
 

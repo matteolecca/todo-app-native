@@ -1,7 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
-import {getColorTheme} from '../../constants/colors'
-const colors = getColorTheme()
-const screen = Dimensions.get('window')
+import { globalColors } from '../../constants/colors'
 export default StyleSheet.create({
     container:{
         width : '100%',
@@ -9,14 +7,12 @@ export default StyleSheet.create({
         alignItems : 'center',
         flexDirection : 'row',
         borderRadius : 10,
-        borderColor : colors.mainColor,
         borderWidth : StyleSheet.hairlineWidth,
-        backgroundColor : colors.secondaryBackground,
+        borderColor : globalColors.lineColor,
         marginBottom : 10,
         marginTop : 10,
     },
     label : {
-        color : colors.mainColor
     },
     input : {
         padding : 10,
@@ -24,7 +20,6 @@ export default StyleSheet.create({
         height : 50,
         borderTopRightRadius : 10,
         borderBottomRightRadius : 10,
-        color : colors.mainColor
     },
     iconContainer : {
         alignItems : 'center',
@@ -34,15 +29,12 @@ export default StyleSheet.create({
         borderBottomLeftRadius : 10,
         borderRightWidth : 0,
         padding : 10,
-        borderRightColor : colors.mainColor,
-        backgroundColor : colors.secondaryBackground,
     },
     disabled : {
         backgroundColor : '#ccc'
     },
     invalid : {
         borderWidth : 1, 
-        borderColor : colors.mainBackground
     }
    
 })

@@ -4,6 +4,7 @@ export const getColorTheme =  ()=>{
 }
 
 export const darkColors = {
+    scheme : 'dark',
     mainColor : '#fff',
     mainBackground : '#333',
     secondaryBackground : 'rgb(73, 73, 73)',
@@ -11,21 +12,19 @@ export const darkColors = {
     appColor : '#f05633'
 }
 export const lightColors = {
+    scheme : 'light',
     mainColor : '#333',
     mainBackground : '#fff',
     secondaryBackground : 'rgb(250, 250, 250)',
-    tertiaryBackground : 'rgb(200, 200, 200)',
+    tertiaryBackground : 'rgb(235, 235, 235)',
     appColor : '#f05633'
 
 }
 
-export default {
-    headerBackground : '#fff',
-    mainBackground : '#f05633',
-    mainColor : '#ccc',
-    constrastColor : '#fff',
-    separatorColor : 'rgba(200,200,200,0.5)',
-    opacityBackground : '#f05633'
+export const globalColors = {
+    appColor : '#f05633',
+    floatingButtonBackground : 'rgb(73, 73, 73)',
+    lineColor : 'rgba(200,200,200,0.5)'
 }
 
 export const colorPickerColors = [

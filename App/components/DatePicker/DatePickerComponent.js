@@ -1,8 +1,8 @@
 import DateTimePicker from '@react-native-community/datetimepicker';
 import React, { useState } from 'react';
 import { View, Text, Switch, LayoutAnimation,  } from 'react-native';
-
-
+import mainStyles from '../../App.styles'
+import { ModeText } from '../../MainComponents/MainComponents';
 const DatePickerComponent = ( props) => {
     const [date, setDate] = useState(new Date())
     const [scheduled, schedule] = useState(false)
@@ -21,7 +21,7 @@ const DatePickerComponent = ( props) => {
     return (
         <View style={{overflow : 'hidden'}}>
             <View style={ { justifyContent: 'space-between', flexDirection: 'row', marginBottom: 10 }}>
-                <Text>Schedule</Text>
+                <ModeText >Schedule</ModeText>
                 <Switch value={scheduled} onValueChange={scheduleHandler} />
             </View>
             {scheduled &&(

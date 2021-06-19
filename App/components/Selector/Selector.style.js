@@ -1,6 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
 import {getColorTheme} from '../../constants/colors'
-const colors = getColorTheme()
 const screen = Dimensions.get('window')
 export default StyleSheet.create({
     selector : {
@@ -18,7 +17,7 @@ export default StyleSheet.create({
         borderRadius : screen.width * .02,
     },
     backgroundColor : {
-        color : colors.mainBackground
+        color : 'transparent'
     }
     
 })

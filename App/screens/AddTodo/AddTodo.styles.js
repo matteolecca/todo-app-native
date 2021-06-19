@@ -1,24 +1,20 @@
 import { Dimensions, StyleSheet } from 'react-native'
-import {getColorTheme} from '../../constants/colors'
-const colors = getColorTheme()
 const screen = Dimensions.get('window')
 export default StyleSheet.create({
-    image: {
-        width: screen.width * 0.4,
-        height: screen.height * 0.3
-    },
-   
-    icon: {
-        color: colors.mainBackground
+    container: {
+        minHeight : screen.height * .4,
+        width : screen.width,
+        flexDirection: 'column',
+         padding : 20, 
+         borderRadius : 20 
     },
     buttonsContainer: {
-        backgroundColor : colors.mainBackground,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
         borderTopWidth: 1,
         borderColor: '#ccc',
-        marginBottom : 50,
+        marginBottom : 25,
         marginTop : 50,
         paddingTop : 25
     },
@@ -27,15 +23,20 @@ export default StyleSheet.create({
         marginLeft : 10,
         padding : 10,
         borderRadius : 5,
-        backgroundColor : colors.appColor
     },
     stateContainer : {
-        minHeight : screen.height * .2,
+        height : screen.height * .4,
         alignItems : 'center',
-        justifyContent : 'center'
+        justifyContent : 'center',
+        alignSelf : 'center',
+        width : screen.width,
+        borderRadius : 20
         
     },
-    confirmMessage : { fontWeight: 'bold', fontSize: 30, margin: 20, color : colors.mainColor }
-    
+    confirmMessage : { fontWeight: 'bold', fontSize: 30, margin: 20, },
+    title : {
+        fontSize : screen.width * .05,
+        fontWeight : '700'
+    }
 
 })

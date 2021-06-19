@@ -8,15 +8,18 @@ import { bottombarIcons } from '../../constants/icons'
 import { AuthContext } from '../../hooks/auth-hook'
 const BottomBar = ({ state, descriptors, navigation, }) => {
     const context = useContext(AuthContext)
-
+    const { colorScheme } = context
+    console.log(state.routes)
     if (context.barHidden) return null
+
     return (
-        <View style={styles.bar}>
-            <View style={[mainStyles.shadowbox, styles.container]}>
+        <View style={[styles.bar]}>
+            <View style={[mainStyles.shadowbox, styles.container, { backgroundColor: colorScheme.mainBackground }]}>
                 {
                     state.routes.map((s, i) => {
                         return (
                             <BarItem
+                                color={colorScheme.mainColor}
                                 onPress={() => navigation.navigate(s.name)}
                                 selected={state.index === i}
                                 key={s.name}
@@ -31,11 +34,11 @@ const BottomBar = ({ state, descriptors, navigation, }) => {
 };
 
 const BarItem = props => {
-    const { name, selected, onPress, icon } = props
+    const { name, selected, onPress, icon, color } = props
     return (
         <TouchableOpacity onPress={onPress}>
-            <Icon title='important' iconStyle={selected ? styles.selectedItem :  styles.item} type='feather' name={icon} />
-            <Text style={selected ? styles.selectedItem :  styles.item}>{name}</Text>
+            <Icon title='important' iconStyle={selected ? styles.selectedItem : { color : color}} type='feather' name={icon} />
+            <Text style={selected ? styles.selectedItem : {color : color}}>{name}</Text>
         </TouchableOpacity>
     )
 }

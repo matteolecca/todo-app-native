@@ -1,7 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native'
 const screen = Dimensions.get('window')
 import { getColorTheme } from '../../constants/colors'
-const colors = getColorTheme()
 export default StyleSheet.create({
     centeredView: {
         flex: 1,
@@ -9,17 +8,17 @@ export default StyleSheet.create({
         alignItems: "center",
         backgroundColor: 'rgba(0,0,0,0.5)',
     },
-    modalView: {
+    absolute : {
         position: 'absolute',
         bottom: 0,
         margin: 0,
-        backgroundColor: colors.mainBackground,
+    },
+    modalView: {
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
-        padding: 25,
-        paddingBottom: 10,
         width: screen.width,
         alignItems: "center",
+        justifyContent : 'center',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -29,4 +28,9 @@ export default StyleSheet.create({
         shadowRadius: 4,
         elevation: 5
     },
+    centered : {
+        flex : 1,
+        backgroundColor:  'rgba(0,0,0,0.5)',
+    }
+    
 });
